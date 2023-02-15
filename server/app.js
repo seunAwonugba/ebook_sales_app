@@ -1,18 +1,16 @@
 const express = require("express");
 const { StatusCodes, ReasonPhrases } = require("http-status-codes");
-const Stripe = require("stripe");
-const stripe = Stripe(
-    "sk_test_51MXML1DPnJxuKR02oC9YuT7c4sFXnWQuMvxJIytkKPb7ClGUaOL8x5UILhWteeeA4Rue4ttMAQlEQqmLK44id0Uc00gOS1OIkH"
-);
+const { checkoutRouter } = require("./router/checkout");
+require("dotenv").config();
 
 const cors = require("cors");
-require("dotenv");
 const app = express();
 const port = process.env.PORT || 8000;
 const host = "localhost";
 
 app.use(express.json());
 app.use(cors());
+app.use("/api/v1/ebook", checkoutRouter);
 
 app.get("/api/v1", (req, res) => {
     res.status(StatusCodes.OK).json({

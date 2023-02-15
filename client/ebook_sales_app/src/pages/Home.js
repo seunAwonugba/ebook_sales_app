@@ -1,7 +1,12 @@
 import React, { useEffect } from "react";
 import service from "../service/service";
+import PayWithCardModal from "../components/PayWithCardModal";
 
 export default function Home() {
+    const [open, setOpen] = React.useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
+
     const getHomePage = async () => {
         try {
             const response = await service.get("/");
@@ -33,7 +38,10 @@ export default function Home() {
                     <p className="learn">
                         Learn web development from beginner to master{" "}
                     </p>
-                    <button class="pay">Pay with card</button>
+                    <button class="pay" onClick={handleOpen}>
+                        Pay with card
+                    </button>
+                    <PayWithCardModal />
                 </div>
             </div>
             <div className="right">
