@@ -3,9 +3,17 @@ import service from "../service/service";
 import PayWithCardModal from "../components/PayWithCardModal";
 
 export default function Home() {
-    const [open, setOpen] = React.useState(false);
-    const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
+    const [showModal, setShowModal] = React.useState(false);
+    // const handleOpen = () => setOpen(true);
+    // const handleClose = () => setOpen(false);
+
+    const handleOpenModalClick = () => {
+        setShowModal(true);
+    };
+
+    const handleCloseModalClick = () => {
+        setShowModal(false);
+    };
 
     const getHomePage = async () => {
         try {
@@ -38,10 +46,13 @@ export default function Home() {
                     <p className="learn">
                         Learn web development from beginner to master{" "}
                     </p>
-                    <button class="pay" onClick={handleOpen}>
+                    <button class="pay" onClick={handleOpenModalClick}>
                         Pay with card
                     </button>
-                    <PayWithCardModal />
+                    <PayWithCardModal
+                        showModalProps={showModal}
+                        closeModalProps={handleCloseModalClick}
+                    />
                 </div>
             </div>
             <div className="right">

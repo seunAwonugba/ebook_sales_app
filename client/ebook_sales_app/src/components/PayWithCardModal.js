@@ -17,17 +17,21 @@ const style = {
 };
 
 export default function PayWithCardModal(props) {
-    const [open, setOpen] = React.useState(false);
-    const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
+    // const [open, setOpen] = React.useState(false);
+    // const handleOpen = () => setOpen(true);
+    // const handleClose = () => setOpen(false);
     const onCheckout = () => {};
+
+    // if (!props.show) {
+    //     return null;
+    // }
 
     return (
         <div>
-            <Button onClick={handleOpen}>Open modal</Button>
+            {/* <Button onClick={handleOpen}>Open modal</Button> */}
             <Modal
-                open={open}
-                onClose={handleClose}
+                open={props.showModalProps}
+                onClose={props.closeModalProps}
                 aria-labelledby="modal-modal-title"
                 aria-describedby="modal-modal-description"
             >
