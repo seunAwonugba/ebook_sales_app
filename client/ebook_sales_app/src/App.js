@@ -3,24 +3,17 @@ import React from "react";
 import Home from "./pages/Home";
 import NavBar from "./navbar/NavBar";
 import Success from "./pages/Success";
+import { Route, Routes } from "react-router-dom";
+import Failed from "./pages/Failed";
 function App() {
-    let component;
-    switch (window.location.pathname) {
-        case "/":
-            component = <Home />;
-            break;
-
-        case "/success":
-            component = <Success />;
-            break;
-
-        default:
-            break;
-    }
     return (
         <>
             <NavBar />
-            <div className="container">{component}</div>
+            <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/success" element={<Success />} />
+                <Route path="/failed" element={<Failed />} />
+            </Routes>
         </>
     );
 }

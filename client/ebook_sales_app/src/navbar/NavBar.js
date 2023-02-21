@@ -1,14 +1,15 @@
+import { Link } from "react-router-dom";
 export default function NavBar() {
     return (
         <nav className="nav-bar">
-            <a href="/" className="title">
+            <Link to="/" className="title">
                 Ebook Sales App
-            </a>
+            </Link>
             <ul>
                 <li>
-                    <a href="/success" className="success">
+                    <Link to="/success" className="success">
                         Success
-                    </a>
+                    </Link>
                 </li>
             </ul>
         </nav>

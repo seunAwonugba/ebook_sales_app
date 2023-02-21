@@ -4,8 +4,6 @@ import PayWithCardModal from "../components/PayWithCardModal";
 
 export default function Home() {
     const [showModal, setShowModal] = React.useState(false);
-    // const handleOpen = () => setOpen(true);
-    // const handleClose = () => setOpen(false);
 
     const handleOpenModalClick = () => {
         setShowModal(true);
@@ -17,20 +15,18 @@ export default function Home() {
 
     const getHomePage = async () => {
         try {
-            const response = await service.get("/");
+            const response = await service.get("/api/v1");
             console.log(response.data);
         } catch (error) {
             if (error.response) {
                 // Request made but the server responded with an error
-                console.log(error.response.data);
-                console.log(error.response.status);
-                console.log(error.response.headers);
+                return error.response;
             } else if (error.request) {
                 // Request made but no response is received from the server.
-                console.log(error.request);
+                return error.request;
             } else {
                 // Error occured while setting up the request
-                console.log("Error", error.message);
+                return error.message;
             }
         }
     };
@@ -46,8 +42,8 @@ export default function Home() {
                     <p className="learn">
                         Learn web development from beginner to master{" "}
                     </p>
-                    <button class="pay" onClick={handleOpenModalClick}>
-                        Pay with card
+                    <button className="pay" onClick={handleOpenModalClick}>
+                        Pay $25
                     </button>
                     <PayWithCardModal
                         showModalProps={showModal}
