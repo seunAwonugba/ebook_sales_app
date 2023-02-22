@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import service from "../service/service";
 import PayWithCardModal from "../components/PayWithCardModal";
 
 export default function Home() {
@@ -12,28 +11,6 @@ export default function Home() {
     const handleCloseModalClick = () => {
         setShowModal(false);
     };
-
-    const getHomePage = async () => {
-        try {
-            const response = await service.get("/api/v1");
-            console.log(response.data);
-        } catch (error) {
-            if (error.response) {
-                // Request made but the server responded with an error
-                return error.response;
-            } else if (error.request) {
-                // Request made but no response is received from the server.
-                return error.request;
-            } else {
-                // Error occured while setting up the request
-                return error.message;
-            }
-        }
-    };
-
-    useEffect(() => {
-        getHomePage();
-    }, []);
     return (
         <div className="home-container">
             <div className="left">

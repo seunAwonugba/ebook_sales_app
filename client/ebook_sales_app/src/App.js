@@ -5,6 +5,7 @@ import NavBar from "./navbar/NavBar";
 import Success from "./pages/Success";
 import { Route, Routes } from "react-router-dom";
 import Failed from "./pages/Failed";
+import { ToastContainer } from "react-toastify";
 function App() {
     return (
         <>
@@ -14,6 +15,7 @@ function App() {
                 <Route path="/success" element={<Success />} />
                 <Route path="/failed" element={<Failed />} />
             </Routes>
+            <ToastContainer theme="colored" pauseOnFocusLoss />
         </>
     );
 }

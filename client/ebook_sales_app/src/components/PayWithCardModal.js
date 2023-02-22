@@ -4,7 +4,9 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import service from "../service/service";
-import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 const style = {
     position: "absolute",
     top: "50%",
@@ -17,8 +19,6 @@ const style = {
 };
 
 export default function PayWithCardModal(props) {
-    const navigate = useNavigate();
-
     const [name, setName] = React.useState("");
     const [email, setEmail] = React.useState("");
     const [phoneNumber, setPhoneNumber] = React.useState("");
@@ -40,8 +40,9 @@ export default function PayWithCardModal(props) {
             phoneNumber,
             billingAddress,
             shippingAddress,
-            price: 2500,
+            price: 25,
             quantity: 1,
+            product: "Web Development Ebook",
         };
 
         try {
@@ -53,7 +54,8 @@ export default function PayWithCardModal(props) {
                 navToStripeCheckout(response.data.data.url);
             }
         } catch (error) {
-            console.log(error);
+            toast.error(error.response.data.data);
+            console.log(error.response.data.data);
         }
     };
 
